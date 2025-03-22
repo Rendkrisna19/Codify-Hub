@@ -1,45 +1,66 @@
-import React from "react";
-import Banner from "../../assets/subscribe.jpg";
-import { IoLogoWhatsapp } from 'react-icons/io';
+import { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import img1 from "../../assets/1.png";
+import img2 from "../../assets/photo2.png";
+import img3 from "../../assets/photo3.png";
+import img4 from "../../assets/photo4.png";
+import img5 from "../../assets/photo5.png";
 
+const images = [img1, img2, img3, img4, img5];
 
-const BannerImg = {
-  backgroundImage: `url(${Banner})`,
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  height: "100%",
-  width: "100%",
+const whatsappLink = (type) => {
+  const message = encodeURIComponent(`Halo, saya ingin membuat ${type}. Bisa dibantu?`);
+  return `https://wa.me/6282275373233?text=${message}`;
 };
 
-const Subscribe = () => {
+const HeroSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 200) {
+        setIsVisible(true);
+        controls.start({ y: 0, opacity: 1 });
+      } else {
+        setIsVisible(false);
+        controls.start({ y: -100, opacity: 0 });
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [controls]);
+
   return (
-    <div
-      data-aos="zoom-in"
-      className="mb-20 bg-gray-100 dark:bg-gray-800 text-white "
-      style={BannerImg}
+    <motion.div
+      className="w-full h-screen flex flex-col justify-center items-center bg-black text-white text-center px-6 text-normal"
+      initial={{ opacity: 0, y: -100 }}
+      animate={controls}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="container backdrop-blur-sm py-10">
-        <div className="space-y-6 max-w-xl mx-auto">
-          <h1 className="text-2xl !text-center sm:text-left sm:text-4xl font-semibold">
-            Hubungi Kami Di 
-          </h1>
-          <div data-aos="fade-up" className="w-full">
-      <a
-      href="https://shopee.co.id/" // Ganti dengan link toko Shopee kamu
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center justify-center gap-2 bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-800 transition-all duration-300"
-    >
-      <IoLogoWhatsapp className="text-2xl text-green-500" />
-      <span>Kunjungi Whatsapp Kami</span>
-    </a>
-    </div>
-        </div>
+      <h1 className="text-4xl md:text-5xl font-bold">Raih Kesuksesan  <span className="text-blue-600">dengan Website </span> Berkelas</h1>
+      <p className="mt-4 text-lg max-w-2xl">
+        Website yang dirancang dengan hati, dikembangkan dengan keahlian, dan dioptimalkan untuk pengalaman pengguna yang luar biasa.
+      </p>
+      <a href={whatsappLink("Landing Page")} className="mt-4 bg-blue-500 hover:bg-blue-900 text-white px-6 py-3 rounded-lg inline-block">
+            Buat Website mu sekarang!
+          </a>
+      <div className="mt-8 flex gap-4 overflow-hidden">
+        {images.map((src, index) => (
+          <motion.img
+            key={index}
+            src={src}
+            alt={`Gallery ${index}`}
+            className="w-48 h-32 object-cover rounded-lg shadow-md"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+          />
+        ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default Subscribe;
-
+export default HeroSection;
