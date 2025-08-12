@@ -1,146 +1,115 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-// Import gambar
-import img1 from "../../assets/1.png";
-import img2 from "../../assets/photo2.png";
-import img3 from "../../assets/photo3.png";
-import img4 from "../../assets/photo4.png";
-import img5 from "../../assets/photo5.png";
-import img6 from "../../assets/shopping.png";
-import img7 from "../../assets/12.png";
-import img8 from "../../assets/13.png";
-import img9 from "../../assets/photo9.png";
-import img10 from "../../assets/14.png";
-import imgA from "../../assets/1.png";
-import imgB from "../../assets/photo2.png";
-import imgC from "../../assets/photo3.png";
-import imgD from "../../assets/photo4.png";
-import imgE from "../../assets/photo5.png";
-import imgF from "../../assets/shopping.png";
-import imgG from "../../assets/12.png";
-import imgH from "../../assets/13.png";
-import imgI from "../../assets/photo9.png";
-import imgJ from "../../assets/14.png";
+// src/Pricing.jsx
+import React from 'react';
 
-const whatsappLink = (type) => {
-  const message = encodeURIComponent(`Halo, saya ingin membuat ${type}. Bisa dibantu?`);
-  return `https://wa.me/6282275373233?text=${message}`;
-};
-const images1 = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
-const images2 = [imgA, imgB, imgC, imgD, imgE, imgF, imgG, imgH, imgI, imgJ];
+// Data untuk setiap paket pricing
+const pricingPlans = [
+  {
+    title: 'PAKET LANDING PAGE',
+    price: 'RP 650.000',
+    details: 'Cocok untuk: usaha kecil/menengah, personal branding, promosi event, freelancer, company profile sederhana.',
+    features: [
+      'Landing page maks 4 Menu',
+      'Gratis Domain .my.id, .web.id',
+      'Desain responsif Dan Modern',
+      'Gratis Desain Banner',
+      'Website Bergaransi selamanya',
+      'Formulir kontak (Contact Form / WhatsApp button)',
+      'Peta lokasi Google Maps',
+      'Integrasi media sosial',
+    ],
+    headerColor: 'from-blue-600 to-indigo-800',
+  },
+  {
+    title: 'PAKET DINAMIS / SISTEM',
+    price: 'Mulai RP 1.500.000',
+    details: 'Cocok untuk: Perusahaan, lembaga pendidikan, organisasi, portal berita, website komunitas.',
+    features: [
+      'Panel admin (CMS) untuk kelola konten',
+      'Multi-halaman (Tentang Kami, Layanan, Blog, Galeri, Kontak, dll.)',
+      'Sistem login & manajemen pengguna',
+      'Formulir interaktif (pendaftaran, booking, request penawaran)',
+      'Maksimal 3 x revisi',
+      'Free Domain .my.id, .store, .dll',
+    ],
+    headerColor: 'from-blue-600 to-indigo-800',
+  },
+  {
+    title: 'PAKET E-COMMERCE / TOKO ONLINE',
+    price: 'RP 2.500.000',
+    details: 'Cocok untuk: UMKM, brand fashion, toko elektronik, produk digital.',
+    features: [
+      'Katalog produk lengkap (foto, harga, deskripsi)',
+      'Keranjang belanja',
+      'Sistem pembayaran (transfer bank, e-wallet, payment gateway)',
+      'Manajemen stok & pesanan',
+      'Dashboard admin untuk kelola produk dan pesanan',
+      'Pengaturan ongkos kirim (integrasi dengan jasa kurir)',
+      'Include fitur Landing page dan dinamis',
+    ],
+    headerColor: 'from-blue-600 to-indigo-800',
+  },
+];
 
-const LandingPage = () => {
+// Komponen PricingCard
+const PricingCard = ({ plan }) => {
   return (
-    <div className="max-w-6xl mx-auto p-6 font-normal">
-      {/* Landing Page Biasa */}
-      <div className="grid md:grid-cols-2 gap-6 items-center">
-        <div>
-          <h1 className="text-4xl font-bold">Landing <span className="text-blue-600">Page</span></h1>
-          <p className="mt-2 text-lg">
-            Mulai dari <span className="line-through text-gray-900">Rp 1.000.000</span>
-          </p>
-          <p className="text-3xl font-bold text-blue-600">Start Form Rp 150.000</p>
-          <p className="text-sm text-gray-500">*Hingga Rp 400.000 Free domain hosting .com</p>
-          <a href={whatsappLink("Landing Page")} className="mt-4 bg-blue-500 hover:bg-blue-900 text-white px-6 py-3 rounded-lg inline-block">
-            Buat Landingpage sekarang!
-          </a>
-        </div>
-        <div className="relative">
-          <span className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-2 rounded-md text-sm">
-            <strong>70%</strong> OFF Promo Ramadhan
-          </span>
-          <p className="text-gray-700 mt-10">
-            Paket ini ideal untuk bisnis pemula yang ingin mulai berjualan secara online dengan
-            biaya terjangkau...
-          </p>
-        </div>
+    <div className="flex flex-col w-full max-w-sm bg-blue-900 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
+      {/* Header dengan background gradient */}
+      <div className={`p-8 text-center rounded-t-3xl bg-gradient-to-r ${plan.headerColor}`}>
+        <h3 className="text-xl font-bold uppercase text-white">{plan.title}</h3>
+        <p className="mt-2 text-3xl font-extrabold text-white">{plan.price}</p>
+        <p className="mt-2 text-xs italic text-gray-200">{plan.details}</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="mt-8 overflow-hidden rounded-lg border border-gray-300 p-4 relative">
-          <motion.div
-            className="flex space-x-4 min-w-[300%] animate-scroll"
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 15,
-              ease: "linear",
-            }}
-          >
-            {[...images1, ...images1].map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt={`Gallery ${index}`}
-                className="w-80 h-56 object-cover rounded-lg"
-              />
-            ))}
-          </motion.div>
-        </div>
-        <div className="mt-6 p-6 border border-gray-300 rounded-lg">
-          <span className="text-2xl font-bold flex items-center">
-            Sederhana dan Efektif
-          </span>
-          <p className="text-gray-600 mt-2">
-            Ideal untuk kampanye promosi produk atau layanan tunggal dengan desain yang fokus pada satu tujuan spesifik.
-          </p>
-        </div>
+
+      {/* Bagian isi dengan daftar fitur */}
+      <div className="p-8 flex-grow">
+        <ul className="space-y-4 text-gray-300">
+          {plan.features.map((feature, idx) => (
+            <li key={idx} className="flex items-start space-x-2">
+              <svg
+                className="h-5 w-5 mt-1 text-white flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="text-sm">{feature}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-      {/* Landing Page Website Dinamis */}
-      <div className="grid md:grid-cols-2 gap-6 items-center mt-12">
-        <div>
-          <h1 className="text-4xl font-bold">Website <span className="text-blue-600">Dinamis</span></h1>
-          <p className="mt-2 text-lg">
-            Mulai dari <span className="line-through text-gray-900">Rp 1.500.000</span>
-          </p>
-          <p className="text-3xl font-bold text-blue-600">Start From Rp 300.000</p>
-          <p className="text-sm text-gray-500">*Hingga Rp 1.000.000 Free domain .com + Maintenance 1 bulan</p>
-          <a href={whatsappLink("Landing Page")} className="mt-4 bg-blue-500 hover:bg-blue-900 text-white px-6 py-3 rounded-lg inline-block">
-            Buat Landingpage sekarang!
-          </a>
-        </div>
-        <div className="relative">
-          <span className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-2 rounded-md text-sm">
-            <strong>Diskon</strong> Spesial Ramadhan
-          </span>
-          <p className="text-gray-700 mt-10">
-            Paket ini cocok untuk bisnis yang membutuhkan sistem manajemen berbasis website dengan dashboard admin yang fleksibel...
-          </p>
-        </div>
+
+      {/* Footer dengan tombol */}
+      <div className="p-8 text-center border-t border-blue-800">
+        <button className="w-full bg-white text-blue-900 font-bold py-3 px-8 rounded-full shadow-md transition-colors hover:bg-gray-200">
+          ORDER NOW
+        </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="mt-8 overflow-hidden rounded-lg border border-gray-300 p-4 relative">
-          <motion.div
-            className="flex space-x-4 min-w-[300%] animate-scroll"
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 15,
-              ease: "linear",
-            }}
-          >
-            {[...images2, ...images2].map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt={`Gallery ${index}`}
-                className="w-80 h-56 object-cover rounded-lg"
-              />
-            ))}
-          </motion.div>
+    </div>
+  );
+};
+
+// Komponen utama yang merender semua kartu
+const Pricing = () => {
+  return (
+    <div className="bg-gray-900 py-16 px-8">
+      <div className="container mx-auto">
+        {/* Tambahan judul di sini */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold text-white">
+            Pilihan Paket Lengkap Layanan Kami
+          </h2>
         </div>
-        <div className="mt-6 p-6 border border-gray-300 rounded-lg">
-          <span className="text-2xl font-bold flex items-center">
-            Dashboard Admin Lengkap
-          </span>
-          <p className="text-gray-600 mt-2">
-            Dengan dashboard admin interaktif, Anda dapat dengan mudah mengelola konten, pengguna, transaksi, dan statistik dalam satu tempat.
-          </p>
+        
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+          {pricingPlans.map((plan, index) => (
+            <PricingCard key={index} plan={plan} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default LandingPage;
+export default Pricing;

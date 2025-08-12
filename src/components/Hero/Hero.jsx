@@ -5,10 +5,12 @@ import "../../global.css"; // Pastikan file global.css ada
 const Hero = () => {
   const scrollToServices = () => {
     const element = document.getElementById("services");
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
@@ -28,32 +30,31 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-8 sm:px-16 lg:px-20 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-12 lg:gap-16">
+      <div className="container mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10 lg:gap-16">
           {/* Text Content Section */}
           <div
             data-aos="zoom-out"
             data-aos-duration="400"
             data-aos-once="true"
-            className="flex flex-col gap-6 text-center sm:text-left"
+            className="flex flex-col gap-6 text-center md:text-left"
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              Welcome To{" "}
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+              Wujudkan Website Impian Anda, Bersama{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-b from-editprimary to-editsecondary">
                 C0DIFY
               </span>{" "}
               HUB
             </h1>
-            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-              Kami menyediakan jasa pembuatan logo, desain website, dan
-              pembuatan website custom. Dapatkan solusi digital kreatif yang
-              mengoptimalkan identitas dan fungsionalitas online Anda!
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-lg mx-auto md:mx-0">
+              Kami menyediakan jasa pembuatan logo, desain website, dan pembuatan website custom. 
+              Dapatkan solusi digital kreatif yang mengoptimalkan identitas dan fungsionalitas online Anda!
             </p>
             <button
               onClick={scrollToServices}
-              className="bg-gradient-to-r from-editprimary to-editsecondary hover:scale-105 duration-200 text-white py-2 px-6 rounded-full self-center sm:self-start"
+              className="bg-gradient-to-r from-editprimary to-editsecondary hover:scale-105 duration-200 text-white py-2 px-6 rounded-full self-center md:self-start"
             >
-              Produk kami
+              Produk Kami
             </button>
           </div>
 
@@ -64,11 +65,11 @@ const Hero = () => {
             data-aos-duration="300"
             data-aos-once="true"
           >
-            <div className="h-100 sm:h-96 lg:h-[30rem] w-100 sm:w-96 lg:w-[30rem] overflow-hidden">
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full">
               <img
                 src={Vector}
                 alt="vector img"
-                className="w-full h-full object-contain"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>

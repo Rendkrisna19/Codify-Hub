@@ -8,9 +8,9 @@ import "../../global.css";
 
 const Menu = [
   { id: 1, name: "Home", link: "/" },
-  { id: 4, name: "Produk Digital", link: "/produk" },
+  
   { id: 5, name: "Team", link: "/team" },
-  { id: 6, name: "Source Code", link: "/source" },
+  { id: 6, name: "Blog", link: "/source" },
 ];
 
 const Navbar = () => {

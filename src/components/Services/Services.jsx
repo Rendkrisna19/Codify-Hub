@@ -1,82 +1,84 @@
 import React from "react";
-import Img2 from "../../assets/biryani2.png";
-import Img3 from "../../assets/biryani4.png";
-import Img4 from "../../assets/biryani6.png";
-import StarRatings from "react-star-ratings";
-import "../../global.css";
+import Img2 from "../../assets/landing-page.png"; // Placeholder image - pertimbangkan mengganti dengan ikon/gambar relevan
+import Img3 from "../../assets/dinamis.png"; // Placeholder image - pertimbangkan mengganti dengan ikon/gambar relevan
+import Img4 from "../../assets/ecommerce.png"; // Placeholder image - pertimbangkan mengganti dengan ikon/gambar relevan
+import "../../global.css"; // Pastikan file global.css ada dan berisi definisi warna kustom seperti editprimary dan editsecondary
 
 const ServicesData = [
   {
     id: 1,
-    img: Img2,
-    name: "Jasa Desain Logo Branding",
+    img: Img2, // Gunakan gambar placeholder yang ada, bisa diganti dengan ikon/gambar yang lebih relevan
+    name: "Website Landing Page",
     description:
-      "Kami menyediakan beberapa jenis pembuatan logo seperti Logotype, Monogram, Iconic Logo.",
+      "Website satu halaman yang fokus mengkonversi pengunjung menjadi pelanggan potensial. Dirancang dengan desain menarik dan Call-to-Action (CTA) yang kuat, sangat ideal untuk kampanye pemasaran, peluncuran produk, atau pengumpulan leads yang efektif.",
   },
   {
     id: 2,
-    img: Img3,
-    name: "Jasa Pembuatan Website",
+    img: Img3, // Gunakan gambar placeholder yang ada, bisa diganti dengan ikon/gambar yang lebih relevan
+    name: "Website Dinamis / Sistem",
     description:
-      "Kami menyediakan pembuatan website statis dan dinamis .",
+      "Solusi website interaktif dan berbasis database yang memungkinkan pengelolaan konten kompleks (CMS), akun pengguna, dan integrasi fitur kustom (misal: booking, pendaftaran). Ideal untuk kebutuhan bisnis, pendidikan, atau komunitas yang terus berkembang.",
   },
   {
     id: 3,
-    img: Img4,
-    name: "Jasa Design flyer Medsos",
+    img: Img4, // Gunakan gambar placeholder yang ada, bisa diganti dengan ikon/gambar yang lebih relevan
+    name: "Website E-commerce / Toko Online",
     description:
-      "Kami juga menyediakan jasa desain flyer kebutuhan medsos.",
+      "Platform toko online lengkap yang memfasilitasi penjualan produk secara digital dengan mudah. Dilengkapi fitur manajemen katalog, keranjang belanja, berbagai opsi pembayaran, dan sistem pengiriman untuk pengalaman belanja yang mulus bagi pelanggan Anda.",
   },
 ];
+
 const Services = () => {
   return (
     <>
       <span id="services"></span>
-      <div className="py-10 font-normal">
-        <div className="container">
-          <div className="text-center mb-20 max-w-[400px] mx-auto">
-            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-editprimary to-editsecondary font-bold ">
-              Services
+      <div className="py-16 font-normal bg-gray-950 text-white"> {/* Tambahkan warna background untuk tema gelap */}
+        <div className="container mx-auto">
+          {/* Judul Bagian Layanan */}
+          <div className="text-center mb-16 max-w-[600px] mx-auto">
+            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-editprimary to-editsecondary font-bold uppercase tracking-wider">
+              Layanan Kami
             </p>
-            <h1 className="text-3xl italic font-bold mb-2">Layanan Kami</h1>
-            <p className="text-xs text-gray-700">
-            Kami menyediakan beberapa jasa.
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 mt-2">
+              Wujudkan Impian Digital Anda
+            </h1>
+            <p className="text-base text-gray-400 leading-relaxed">
+              Kami menawarkan berbagai layanan pengembangan website profesional untuk membantu bisnis Anda berkembang di dunia digital.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center">
+
+          {/* Grid Layanan */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-8 place-items-center">
             {ServicesData.map((service) => (
               <div
+                key={service.id}
                 data-aos="zoom-in"
                 data-aos-duration="300"
-                className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-editprimary dark:hover:bg-editprimary hover:text-white relative shadow-xl duration-high group max-w-[300px]"
+                className="relative rounded-3xl bg-gray-800 dark:bg-gray-900 border border-gray-700 shadow-xl duration-high group max-w-[320px] transform hover:-translate-y-3 hover:shadow-2xl transition-all"
               >
-                <div className="h-[100px]">
+                {/* Bagian Gambar/Ikon */}
+                <div className="h-[120px] flex justify-center items-center -mt-10"> {/* Sesuaikan margin-top jika gambar terlalu tinggi */}
                   <img
                     src={service.img}
-                    alt=""
-                    className="max-w-[200px] block mx-auto transform -translate-y-14
-                  group-hover:scale-105 group-hover:rotate-6 duration-300"
+                    alt={service.name}
+                    className="max-w-[200px] w-full block mx-auto object-contain
+                    group-hover:scale-105 group-hover:rotate-6 duration-300"
                   />
                 </div>
-                <div className="p-4 text-center">
-                  <div className="w-full ">
-                    {/* <StarRatings
-                      rating={4}
-                      starRatedColor="yellow"
-                      isSelectable={false}
-                      starHoverColor="yellow"
-                      // starSelectingHoverColor
-                      starDimension="20px"
-                      changeRating={() => {}}
-                      numberOfStars={5}
-                      name="rating"
-                    /> */}
-                  </div>
-                  <h1 className="text-lg font-bold mb-2">{service.name}</h1>
-                  <p className="text-gray-500 group-hover:text-white duration-high text-xs line-clamp-2">
+
+                {/* Bagian Konten Teks */}
+                <div className="p-6 text-center">
+                  <h1 className="text-xl font-bold mb-3 group-hover:text-white">
+                    {service.name}
+                  </h1>
+                  <p className="text-gray-400 group-hover:text-white duration-high text-sm line-clamp-4">
                     {service.description}
                   </p>
                 </div>
+
+                {/* Efek Hover tambahan */}
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-editprimary to-editsecondary -z-10"></div>
+                <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-editsecondary transition-colors duration-300 pointer-events-none"></div>
               </div>
             ))}
           </div>
